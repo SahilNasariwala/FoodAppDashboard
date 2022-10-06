@@ -1,20 +1,46 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import React, { Component } from 'react'
+import HomeScreen from './Screens/Home';
+import NotificationScreen from './Screens/Notification';
+import ProfileScreen from './Screens/Profile';
+import SearchScreen from './Screens/Search';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
+import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
+import TopBar from './Topbar';
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View>
+    <TopBar></TopBar>
+    
+    <NavigationContainer>
+    <Tab.Navigator labeled={false} barStyle={{ backgroundColor: 'black' }} activeColor="white" >
+      <Tab.Screen name="Home" component={HomeScreen}            //Home Screen
+      options={{
+        tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" color={color} size={26}/>
+        ),
+    }}/>
+      <Tab.Screen name="Search" component={SearchScreen}      // Search Screen
+      options={{
+        tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="magnify" color={color} size={26}/>
+        ),
+    }}/>
+      <Tab.Screen name="Notification" component={NotificationScreen} 
+      options={{
+        tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="heart" color={color} size={26}/>
+        ),
+    }}/>
+      <Tab.Screen name="Profile" component={ProfileScreen}   // Profile Screen
+      options={{
+        tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="account-circle" color={color} size={26}/>
+        ),
+    }}/>
+    </Tab.Navigator>
+    </NavigationContainer>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
